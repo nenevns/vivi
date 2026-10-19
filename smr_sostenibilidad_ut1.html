@@ -124,7 +124,7 @@
                 <div class="bg-gray-50 dark:bg-gray-800/50 p-8 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm relative overflow-hidden">
                     <div class="absolute -right-10 -top-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl"></div>
                     <h2 class="mt-0 mb-4 border-none text-2xl flex items-center gap-2"><svg class="w-7 h-7 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> ¿Qué vas a aprender?</h2>
-                    <p>En esta unidad aprenderemos a distinguir una <strong>verdadera decisión sostenible</strong> de una simple afirmación publicitaria o <em>Greenwashing</em>. Nos basaremos en casos prácticos empresariales como <em>RedNova</em> y <em>Mediterránea Datahost</em>.</p>
+                    <p>En esta unidad aprenderemos a distinguir una <strong>verdadera decisión sostenible</strong> de una simple afirmación publicitaria o <em>Greenwashing</em>. Nos basaremos en el caso práctico de <em>Mediterránea Datahost</em>.</p>
                     
                     <ul class="list-disc pl-6 space-y-3 mt-6">
                         <li>Diferenciar Sostenibilidad, ODS (Agenda 2030) y Criterios ASG.</li>
@@ -290,11 +290,11 @@
                 <p>El <em>Greenwashing</em> ocurre cuando una empresa realiza afirmaciones ecológicas engañosas, incompletas o sin respaldo empírico.</p>
                 
                 <div class="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 p-5 rounded-r-xl my-6">
-                    <strong class="text-red-800 dark:text-red-400 block mb-2">🚫 El Caso Práctico RedNova</strong>
-                    <p class="text-sm m-0 text-red-900 dark:text-red-200">RedNova afirma en su publicidad: <em>"Somos 100% verdes porque usamos factura electrónica"</em>. Esta afirmación es <strong>absoluta y no verificable</strong>. La factura electrónica apenas representa una fracción minúscula del impacto de un Data Center. Ignora los 1.280.000 kWh de consumo y los RAEE sin destino. Es un caso claro de Greenwashing.</p>
+                    <strong class="text-red-800 dark:text-red-400 block mb-2">🚫 El Caso Práctico Mediterránea Datahost</strong>
+                    <p class="text-sm m-0 text-red-900 dark:text-red-200">En <em>Mediterránea Datahost</em> se detecta una afirmación comercial: <em>"Ofrecemos alojamiento eficiente y sostenible"</em>, pero no publican el método ni el alcance de dicha eficiencia. Esta afirmación es <strong>engañosa e incompleta</strong> si no se publican los datos que la respaldan (como los 1.280.000 kWh consumidos). Es un riesgo de Greenwashing.</p>
                 </div>
                 
-                <p><strong>¿Cómo se soluciona?</strong> Reformulando con límites y métricas:<br> <em>"Usamos facturación electrónica en el 100% de los clientes; además, nuestro objetivo es medir y reducir la huella energética de los servidores para 2027 (Evidencia: Facturas y Auditoría)".</em></p>
+                <p><strong>¿Cómo se soluciona?</strong> Reformulando con límites y métricas:<br> <em>"Nuestro objetivo es auditar nuestro consumo base de 1.280.000 kWh de 2025 para medir y reducir la huella energética de los servidores de cara a 2027 (Evidencia: Facturas y DCIM)".</em></p>
 
                 <h2>4.2. El Modelo de Análisis Definitivo</h2>
                 <p>Para evitar listas de buenas intenciones desconectadas, usa esta cadena para auditar o crear políticas de sostenibilidad:</p>
@@ -369,7 +369,7 @@
                 <div class="bg-gradient-to-br from-emerald-900 to-gray-900 p-8 rounded-3xl shadow-2xl text-center mb-10 relative overflow-hidden">
                     <div class="absolute -top-10 -right-10 w-40 h-40 bg-emerald-500 opacity-20 rounded-full blur-2xl pointer-events-none"></div>
                     <h3 class="text-2xl font-bold text-white mb-2 relative z-10">Simulador de Casos de Auditoría</h3>
-                    <p class="text-gray-300 text-sm mb-6 max-w-lg mx-auto relative z-10">Pulsa el botón para generar un examen técnico aleatorio evaluando las métricas, greenwashing y matrices de materialidad de casos como RedNova y Datahost.</p>
+                    <p class="text-gray-300 text-sm mb-6 max-w-lg mx-auto relative z-10">Pulsa el botón para generar un examen técnico aleatorio evaluando las métricas, greenwashing y matrices de materialidad del caso Mediterránea Datahost.</p>
                     
                     <button id="btn-generar" onclick="generarEjerciciosLocal()" class="relative z-10 bg-emerald-500 hover:bg-emerald-400 text-white font-bold py-3 px-8 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.5)] transition-transform transform hover:scale-105">
                         Generar Test de Evaluación (10 Preguntas)
@@ -454,7 +454,7 @@
         const bancoLocal = [
             { pregunta: "En el concepto de Sostenibilidad, si apagamos servidores para ahorrar energía pero dejamos sin servicio a los clientes de un hospital, ¿qué estamos haciendo?", opciones: ["Mejorando la gobernanza", "Trasladando el impacto negativo de la variable ambiental a la variable social/económica", "Aplicando correctamente el ODS 12"], correcta: 1, explicacion: "La sostenibilidad requiere un equilibrio. Mejorar el límite ambiental destruyendo la viabilidad social/económica es trasladar impactos." },
             { pregunta: "¿Qué significa las siglas ASG en gestión corporativa?", opciones: ["Auditoría de Sistemas Globales", "Ambiental, Social y Gobernanza", "Agenda de Sostenibilidad General"], correcta: 1, explicacion: "ASG (o ESG en inglés) organiza la gestión en esos tres pilares operativos." },
-            { pregunta: "La empresa RedNova dice: 'Somos 100% verdes porque usamos factura electrónica'. ¿Qué fallo tiene esta afirmación publicitaria?", opciones: ["No usa color verde en el logo", "Es una afirmación absoluta sin alcance ni métricas (Greenwashing)", "La factura electrónica contamina más que el papel"], correcta: 1, explicacion: "Hacer afirmaciones absolutas basadas en una minúscula parte de la actividad, ignorando el consumo eléctrico real, es Greenwashing." },
+            { pregunta: "Mediterránea Datahost afirma en su web que ofrecen 'alojamiento eficiente' sin publicar ningún método de cálculo ni alcance. ¿Qué riesgo supone esto?", opciones: ["Ninguno, es marketing legal", "Es un caso de Greenwashing (afirmación sin soporte ni métricas)", "Falta ponerle un logo verde"], correcta: 1, explicacion: "Publicitar eficiencia sin un método de cálculo, alcance ni línea base verificable es Greenwashing." },
             { pregunta: "En una Matriz de Materialidad, ¿qué dos factores se cruzan para priorizar si un problema es importante o no?", opciones: ["Coste en euros vs Tiempo de reparación", "Impacto real generado vs Expectativas y relevancia para el negocio", "Número de empleados vs Número de quejas"], correcta: 1, explicacion: "La materialidad evalúa la gravedad del impacto y la relevancia/expectativas de los grupos de interés." },
             { pregunta: "¿Cuál de los siguientes es un asunto que pertenece al pilar de 'Gobernanza' (G)?", opciones: ["La falta de constancia de borrado seguro en discos duros revendidos (privacidad y ética)", "Los 1.280.000 kWh de consumo eléctrico de los racks", "Las 1.460 horas extras de los técnicos de soporte"], correcta: 0, explicacion: "La gobernanza incluye la ética, cumplimiento legal, compras responsables y protección de privacidad (borrado criptográfico)." },
             { pregunta: "¿Cuál de estos NO es considerado tradicionalmente un Grupo de Interés (Stakeholder) directo de un Data Center?", opciones: ["Los técnicos de operación (plantilla)", "Los clientes alojados", "Los alienígenas de Marte", "La comunidad local próxima que sufre el ruido térmico"], correcta: 2, explicacion: "Los grupos de interés son personas o entidades que afectan o son afectados por la empresa." },
