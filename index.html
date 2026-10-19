@@ -11,7 +11,7 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: { 50: '#f0fdfa', 100: '#ccfbf1', 200: '#99f6e4', 300: '#5eead4', 400: '#2dd4bf', 500: '#14b8a6', 600: '#0d9488', 700: '#0f766e', 800: '#115e59', 900: '#134e4a' },
+                        primary: { 50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac', 400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#14532d' },
                     },
                     fontFamily: { sans: ['Inter', 'sans-serif'] },
                     animation: {
@@ -37,20 +37,15 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         body { font-family: 'Inter', sans-serif; }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        .dark .glass-card {
-            background: rgba(30, 41, 59, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+        .glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); }
+        .dark .glass-card { background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); }
+        /* Ocultar barra de desplazamiento en modales */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500 min-h-screen relative overflow-x-hidden">
     
-    <!-- Background Animated Blobs -->
     <div class="fixed inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
         <div class="absolute top-0 -left-4 w-72 h-72 bg-primary-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob dark:opacity-20"></div>
         <div class="absolute top-0 -right-4 w-72 h-72 bg-emerald-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000 dark:opacity-20"></div>
@@ -58,53 +53,121 @@
     </div>
 
     <div class="relative z-10 flex flex-col min-h-screen">
-        <!-- Navegación -->
         <nav class="w-full p-6 flex justify-between items-center max-w-6xl mx-auto">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 bg-gradient-to-br from-primary-400 to-emerald-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg">V</div>
-                <span class="font-bold text-xl tracking-tight">Vivi's Hub</span>
+                <span class="font-bold text-xl tracking-tight hidden sm:block">Vivi's Hub</span>
             </div>
-            <button id="theme-toggle" class="p-2 rounded-full bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all text-gray-600 dark:text-gray-300">
-                <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707-.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-            </button>
+            
+            <div class="flex items-center gap-4">
+                <!-- Controles de Usuario -->
+                <div id="auth-btn-group" class="flex gap-2">
+                    <button onclick="openAuthModal('login')" class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Entrar</button>
+                    <button onclick="openAuthModal('register')" class="text-sm font-semibold bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors shadow-md">Registrarse</button>
+                </div>
+                
+                <div id="user-profile-group" class="hidden flex items-center gap-3 bg-white dark:bg-gray-800 px-4 py-1.5 rounded-full shadow-sm border border-gray-200 dark:border-gray-700">
+                    <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <span id="user-email-display" class="text-sm font-medium text-gray-700 dark:text-gray-300 max-w-[120px] truncate">usuario@email.com</span>
+                    <button onclick="logoutUser()" class="text-xs text-red-500 hover:text-red-700 font-bold ml-2" title="Cerrar sesión">Salir</button>
+                </div>
+
+                <div class="h-6 w-px bg-gray-300 dark:bg-gray-700 mx-1"></div>
+
+                <!-- Botón Modo Oscuro -->
+                <button id="theme-toggle" class="p-2 rounded-full bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all text-gray-600 dark:text-gray-300">
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707-.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                </button>
+            </div>
         </nav>
 
-        <!-- Contenido Principal -->
         <main class="flex-1 w-full max-w-6xl mx-auto px-6 py-12 flex flex-col items-center justify-center">
             <header class="text-center mb-16 opacity-0 animate-fade-in-up" style="animation-delay: 0.1s;">
                 <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-emerald-500 dark:from-primary-400 dark:to-emerald-300">Hola, soy Vivi</h1>
-                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Bienvenido a mi centro personal de estudio. Aquí guardaré y organizaré todas las aplicaciones web, libros interactivos y herramientas de repaso para mi grado.</p>
+                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Bienvenido a mi centro personal de estudio. Inicia sesión para guardar tu progreso automáticamente en la nube.</p>
             </header>
 
             <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Tarjeta: UT1 SMR -->
-                <a href="smr_ut1.html" class="group glass-card rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 opacity-0 animate-fade-in-up flex flex-col h-full cursor-pointer" style="animation-delay: 0.2s;">
-                    <div class="w-12 h-12 bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 rounded-xl flex items-center justify-center mb-4">
+                <!-- Tarjeta del Libro UT1 -->
+                <div class="group glass-card rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 opacity-0 animate-fade-in-up flex flex-col h-full relative overflow-hidden" style="animation-delay: 0.2s;">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-primary-100 dark:bg-primary-900/30 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+                    
+                    <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-400 rounded-xl flex items-center justify-center mb-4 z-10">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
                     </div>
-                    <div class="inline-block px-3 py-1 bg-gray-100 dark:bg-gray-800 text-xs font-semibold rounded-full w-max mb-3 text-gray-700 dark:text-gray-300">SMR - CVOPM190</div>
-                    <h3 class="text-xl font-bold mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">Libro UT1: Intro. Programación</h3>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm flex-1 mb-4">Pensamiento computacional, modelo E-P-S, descomposición, algoritmos y trazas.</p>
-                    <div class="flex items-center text-primary-600 dark:text-primary-400 text-sm font-semibold">
-                        Abrir módulo <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    <div class="inline-block px-3 py-1 bg-gray-100 dark:bg-gray-800 text-xs font-semibold rounded-full w-max mb-3 text-gray-700 dark:text-gray-300 z-10">SMR - CVOPM190</div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors z-10">Libro UT1: Intro. Programación</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm flex-1 mb-6 z-10">Pensamiento computacional, modelo E-P-S, descomposición, algoritmos y trazas.</p>
+                    
+                    <!-- Barra de progreso guardada en la nube -->
+                    <div class="mb-4 z-10">
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="font-semibold text-gray-600 dark:text-gray-400" id="ut1-status-text">Sin iniciar sesión</span>
+                            <span class="font-bold text-primary-600 dark:text-primary-400" id="ut1-percent-text">--%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div id="ut1-progress-bar" class="bg-primary-500 h-2 rounded-full transition-all duration-1000" style="width: 0%"></div>
+                        </div>
                     </div>
-                </a>
 
-                <!-- Tarjeta: Próximamente 1 -->
-                <div class="glass-card rounded-2xl p-6 shadow-sm border border-dashed border-gray-300 dark:border-gray-700 opacity-0 animate-fade-in-up flex flex-col items-center justify-center text-center h-full min-h-[250px]" style="animation-delay: 0.3s;">
-                    <div class="w-12 h-12 bg-gray-100 dark:bg-gray-800 text-gray-400 rounded-xl flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                    </div>
-                    <h3 class="text-lg font-bold mb-1 text-gray-500">Nuevo Módulo</h3>
-                    <p class="text-gray-400 text-sm">Próximas unidades de SMR se añadirán aquí.</p>
+                    <a href="smr_ut1.html" class="flex items-center justify-center w-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold py-3 rounded-xl hover:scale-[1.02] transition-transform z-10 shadow-sm">
+                        Abrir Módulo
+                    </a>
                 </div>
-            </div>
-        </main>
 
-        <footer class="text-center p-6 text-sm text-gray-500 dark:text-gray-400">
-            Creado para Vivi &middot; 2026
-        </footer>
+                <!-- Tarjeta del Libro Sostenibilidad -->
+                <div class="group glass-card rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 opacity-0 animate-fade-in-up flex flex-col h-full relative overflow-hidden" style="animation-delay: 0.3s;">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-100 dark:bg-emerald-900/30 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+                    
+                    <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 rounded-xl flex items-center justify-center mb-4 z-10">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div class="inline-block px-3 py-1 bg-gray-100 dark:bg-gray-800 text-xs font-semibold rounded-full w-max mb-3 text-gray-700 dark:text-gray-300 z-10">SMR - Sostenibilidad</div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors z-10">UT1: ODS y Criterios ASG</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm flex-1 mb-6 z-10">Agenda 2030, Matriz de Materialidad, Casos Datahost y cómo detectar el Greenwashing.</p>
+                    
+                    <!-- Barra de progreso guardada en la nube -->
+                    <div class="mb-4 z-10">
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="font-semibold text-gray-600 dark:text-gray-400" id="sost-ut1-status-text">Sin iniciar sesión</span>
+                            <span class="font-bold text-emerald-600 dark:text-emerald-400" id="sost-ut1-percent-text">--%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div id="sost-ut1-progress-bar" class="bg-emerald-500 h-2 rounded-full transition-all duration-1000" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <a href="smr_sostenibilidad_ut1.html" class="flex items-center justify-center w-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold py-3 rounded-xl hover:scale-[1.02] transition-transform z-10 shadow-sm">
+                        Abrir Módulo
+                    </a>
+                </div>
+
+                <!-- Tarjeta Dummy -->
+                <div class="glass-card rounded-2xl p-6 shadow-sm border border-dashed border-gray-300 dark:border-gray-700 opacity-0 animate-fade-in-up flex flex-col items-center justify-center text-center h-full min-h-[300px]" style="animation-delay: 0.4s;">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Contraseña</label>
+                    <input type="password" id="auth-password" required minlength="6" class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary-500 focus:outline-none text-gray-800 dark:text-white">
+                </div>
+                
+                <div id="auth-error" class="hidden text-sm text-red-500 bg-red-50 dark:bg-red-900/30 p-3 rounded-lg font-medium"></div>
+                
+                <button type="submit" id="auth-submit-btn" class="w-full bg-primary-600 text-white font-bold py-3 rounded-xl hover:bg-primary-700 transition-colors shadow-md flex justify-center items-center">
+                    <span>Continuar</span>
+                    <svg id="auth-spinner" class="hidden animate-spin ml-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                </button>
+            </form>
+            
+            <div class="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
+                <span id="auth-toggle-text">¿No tienes cuenta?</span> 
+                <button onclick="toggleAuthMode()" id="auth-toggle-btn" class="text-primary-600 dark:text-primary-400 font-bold hover:underline">Regístrate</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast UI -->
+    <div id="toast" class="fixed bottom-5 right-5 transform translate-y-20 opacity-0 transition-all duration-300 z-50 bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-6 py-4 rounded-2xl shadow-2xl font-medium flex items-center gap-3">
+        <span id="toast-msg">Mensaje</span>
     </div>
 
     <script>
@@ -114,15 +177,12 @@
 
         function updateThemeUI() {
             if (document.documentElement.classList.contains('dark')) {
-                darkIcon.classList.remove('hidden');
-                lightIcon.classList.add('hidden');
+                darkIcon.classList.remove('hidden'); lightIcon.classList.add('hidden');
             } else {
-                lightIcon.classList.remove('hidden');
-                darkIcon.classList.add('hidden');
+                lightIcon.classList.remove('hidden'); darkIcon.classList.add('hidden');
             }
         }
 
-        // Init theme
         if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
         } else {
@@ -132,13 +192,199 @@
 
         themeToggleBtn.addEventListener('click', function() {
             document.documentElement.classList.toggle('dark');
-            if (document.documentElement.classList.contains('dark')) {
-                localStorage.setItem('color-theme', 'dark');
-            } else {
-                localStorage.setItem('color-theme', 'light');
-            }
+            localStorage.setItem('color-theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
             updateThemeUI();
         });
+
+        // UI de Modales
+        let currentAuthMode = 'login';
+        
+        function openAuthModal(mode) {
+            currentAuthMode = mode;
+            updateAuthUI();
+            const modal = document.getElementById('auth-modal');
+            const content = document.getElementById('auth-modal-content');
+            modal.classList.remove('hidden');
+            // Timeout para la animación
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeAuthModal() {
+            const modal = document.getElementById('auth-modal');
+            const content = document.getElementById('auth-modal-content');
+            modal.classList.add('opacity-0');
+            content.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.getElementById('auth-error').classList.add('hidden');
+            }, 300);
+        }
+
+        function toggleAuthMode() {
+            currentAuthMode = currentAuthMode === 'login' ? 'register' : 'login';
+            updateAuthUI();
+        }
+
+        function updateAuthUI() {
+            const isLogin = currentAuthMode === 'login';
+            document.getElementById('auth-title').innerText = isLogin ? 'Iniciar Sesión' : 'Crear Cuenta';
+            document.getElementById('auth-toggle-text').innerText = isLogin ? '¿No tienes cuenta?' : '¿Ya tienes cuenta?';
+            document.getElementById('auth-toggle-btn').innerText = isLogin ? 'Regístrate' : 'Entra';
+            document.getElementById('auth-error').classList.add('hidden');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => { toast.classList.add('translate-y-20', 'opacity-0'); }, 3000);
+        }
+    </script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithCustomToken, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // ID de la aplicación para guardar los datos aislados
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'vivi-hub-smr';
+        
+        // Cargar configuración de Firebase. 
+        // Si lo subes a tu GitHub, cambia los datos del 'else' por los de tu proyecto de Firebase.
+        let firebaseConfig;
+        if (typeof __firebase_config !== 'undefined') {
+            firebaseConfig = JSON.parse(__firebase_config);
+        } else {
+            firebaseConfig = {
+                // PARA GITHUB: Crea un proyecto gratuito en Firebase y pega tu config aquí
+                apiKey: "TU_API_KEY_DE_FIREBASE_AQUI",
+                authDomain: "tu-proyecto.firebaseapp.com",
+                projectId: "tu-proyecto",
+                storageBucket: "tu-proyecto.appspot.com",
+                messagingSenderId: "000000000",
+                appId: "1:000:web:000"
+            };
+        }
+
+        let app, auth, db;
+        try {
+            app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+            db = getFirestore(app);
+        } catch (e) {
+            console.error("Firebase no se inicializó correctamente. Comprueba la configuración si estás en GitHub.", e);
+        }
+
+        // Estado del usuario
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                // Interfaz logueado
+                document.getElementById('auth-btn-group').classList.add('hidden');
+                document.getElementById('user-profile-group').classList.remove('hidden');
+                document.getElementById('user-email-display').innerText = user.email || 'Alumno SMR';
+                closeAuthModal();
+                showToast(`¡Hola de nuevo, ${user.email.split('@')[0]}!`);
+                
+                // Cargar progreso del usuario
+                await loadCloudProgress(user.uid, 'ut1');
+                await loadCloudProgress(user.uid, 'sost_ut1');
+            } else {
+                // Interfaz deslogueado
+                document.getElementById('auth-btn-group').classList.remove('hidden');
+                document.getElementById('user-profile-group').classList.add('hidden');
+                
+                // Resetear progreso visual Programación
+                document.getElementById('ut1-progress-bar').style.width = '0%';
+                document.getElementById('ut1-percent-text').innerText = '--%';
+                document.getElementById('ut1-status-text').innerText = 'Inicia sesión para ver tu progreso';
+
+                // Resetear progreso visual Sostenibilidad
+                document.getElementById('sost-ut1-progress-bar').style.width = '0%';
+                document.getElementById('sost-ut1-percent-text').innerText = '--%';
+                document.getElementById('sost-ut1-status-text').innerText = 'Inicia sesión para ver tu progreso';
+            }
+        });
+
+        // Intentar loguear automáticamente si estamos en el entorno de pruebas de la IA
+        if (typeof __initial_auth_token !== 'undefined') {
+            signInWithCustomToken(auth, __initial_auth_token).catch(e => console.warn("Canvas Token Login failed", e));
+        }
+
+        // Cargar progreso de lectura desde Firestore
+        async function loadCloudProgress(userId, moduleId) {
+            try {
+                // Selecciona los IDs correctos basados en el módulo solicitado
+                const progressId = moduleId === 'ut1' ? 'ut1' : 'sost-ut1';
+                
+                document.getElementById(`${progressId}-status-text`).innerText = 'Sincronizando...';
+                
+                // CRÍTICO: Regla 1 de Firestore (Rutas estrictas)
+                const docRef = doc(db, 'artifacts', appId, 'users', userId, 'progress', moduleId);
+                const docSnap = await getDoc(docRef);
+                
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    const percent = data.maxScrollPercent || 0;
+                    document.getElementById(`${progressId}-progress-bar`).style.width = `${percent}%`;
+                    document.getElementById(`${progressId}-percent-text`).innerText = `${Math.floor(percent)}%`;
+                    document.getElementById(`${progressId}-status-text`).innerText = 'Progreso guardado en la nube';
+                } else {
+                    document.getElementById(`${progressId}-status-text`).innerText = 'Empieza a leer el módulo';
+                    document.getElementById(`${progressId}-percent-text`).innerText = '0%';
+                }
+            } catch (error) {
+                console.error(`Error leyendo progreso de ${moduleId}:`, error);
+                document.getElementById(moduleId === 'ut1' ? 'ut1-status-text' : 'sost-ut1-status-text').innerText = 'Progreso local (Nube inactiva)';
+            }
+        }
+
+        // Funciones conectadas al HTML (Registrar, Loguear, Salir)
+        window.handleAuthSubmit = async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('auth-email').value;
+            const password = document.getElementById('auth-password').value;
+            const errorDiv = document.getElementById('auth-error');
+            const spinner = document.getElementById('auth-spinner');
+            
+            errorDiv.classList.add('hidden');
+            spinner.classList.remove('hidden');
+
+            try {
+                if (currentAuthMode === 'login') {
+                    await signInWithEmailAndPassword(auth, email, password);
+                } else {
+                    const userCred = await createUserWithEmailAndPassword(auth, email, password);
+                    // Crear perfil en la base de datos
+                    await setDoc(doc(db, 'artifacts', appId, 'users', userCred.user.uid, 'profile', 'info'), {
+                        email: email,
+                        createdAt: new Date().toISOString()
+                    });
+                }
+            } catch (error) {
+                console.error(error);
+                errorDiv.innerText = obtenerMensajeError(error.code);
+                errorDiv.classList.remove('hidden');
+            } finally {
+                spinner.classList.add('hidden');
+            }
+        };
+
+        window.logoutUser = async () => {
+            await signOut(auth);
+            showToast("Sesión cerrada");
+        };
+
+        // Traductor de errores de Firebase amigable
+        function obtenerMensajeError(code) {
+            if (code === 'auth/invalid-credential' || code === 'auth/user-not-found' || code === 'auth/wrong-password') return "Email o contraseña incorrectos.";
+            if (code === 'auth/email-already-in-use') return "Este email ya está registrado.";
+            if (code === 'auth/weak-password') return "La contraseña debe tener al menos 6 caracteres.";
+            if (code.includes('api-key')) return "Falta configurar la API Key de Firebase en el código.";
+            return "Ocurrió un error. Inténtalo de nuevo.";
+        }
     </script>
 </body>
 </html>
