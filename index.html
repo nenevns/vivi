@@ -89,7 +89,7 @@
             </header>
 
             <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Tarjeta del Libro UT1 -->
+                <!-- Tarjeta del Libro UT1: Introducción a la Programación -->
                 <div class="group glass-card rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 opacity-0 animate-fade-in-up flex flex-col h-full relative overflow-hidden" style="animation-delay: 0.2s;">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-primary-100 dark:bg-primary-900/30 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
                     
@@ -100,7 +100,6 @@
                     <h3 class="text-xl font-bold mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors z-10">Libro UT1: Intro. Programación</h3>
                     <p class="text-gray-600 dark:text-gray-400 text-sm flex-1 mb-6 z-10">Pensamiento computacional, modelo E-P-S, descomposición, algoritmos y trazas.</p>
                     
-                    <!-- Barra de progreso guardada en la nube -->
                     <div class="mb-4 z-10">
                         <div class="flex justify-between text-xs mb-1">
                             <span class="font-semibold text-gray-600 dark:text-gray-400" id="ut1-status-text">Sin iniciar sesión</span>
@@ -116,30 +115,66 @@
                     </a>
                 </div>
 
-                <!-- Tarjeta del Libro Sostenibilidad -->
+                <!-- Tarjeta del Módulo Digitalización SMR (UT2 y UT3) -->
                 <div class="group glass-card rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 opacity-0 animate-fade-in-up flex flex-col h-full relative overflow-hidden" style="animation-delay: 0.3s;">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-100 dark:bg-indigo-900/30 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+                    
+                    <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 rounded-xl flex items-center justify-center mb-4 z-10">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                    </div>
+                    <div class="inline-block px-3 py-1 bg-gray-100 dark:bg-gray-800 text-xs font-semibold rounded-full w-max mb-3 text-gray-700 dark:text-gray-300 z-10">SMR - Digitalización</div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors z-10">Módulo Digitalización SMR (UT2 y UT3)</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm flex-1 mb-6 z-10">Industria 4.0, CPS, Cloud Computing, Edge, Fog y Mist con generador de tests.</p>
+                    
+                    <div class="mb-4 z-10">
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="font-semibold text-gray-600 dark:text-gray-400" id="dig-status-text">Sin iniciar sesión</span>
+                            <span class="font-bold text-indigo-600 dark:text-indigo-400" id="dig-percent-text">--%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div id="dig-progress-bar" class="bg-indigo-500 h-2 rounded-full transition-all duration-1000" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <a href="digitalizacion_smr_ut2_ut3.html" class="flex items-center justify-center w-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold py-3 rounded-xl hover:scale-[1.02] transition-transform z-10 shadow-sm">
+                        Abrir Digitalización
+                    </a>
+                </div>
+
+                <!-- Tarjeta del Libro Sostenibilidad SMR -->
+                <div class="group glass-card rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 opacity-0 animate-fade-in-up flex flex-col h-full relative overflow-hidden" style="animation-delay: 0.4s;">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-100 dark:bg-emerald-900/30 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
                     
                     <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 rounded-xl flex items-center justify-center mb-4 z-10">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
                     <div class="inline-block px-3 py-1 bg-gray-100 dark:bg-gray-800 text-xs font-semibold rounded-full w-max mb-3 text-gray-700 dark:text-gray-300 z-10">SMR - Sostenibilidad</div>
-                    <h3 class="text-xl font-bold mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors z-10">UT1: ODS y Criterios ASG</h3>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm flex-1 mb-6 z-10">Agenda 2030, Matriz de Materialidad, Casos Datahost y cómo detectar el Greenwashing.</p>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors z-10">Sostenibilidad y ASG</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm flex-1 mb-6 z-10">ASG, ODS, Matriz de Materialidad, RAEE y desempeño profesional sostenible.</p>
                     
-                    <!-- Barra de progreso guardada en la nube -->
                     <div class="mb-4 z-10">
                         <div class="flex justify-between text-xs mb-1">
-                            <span class="font-semibold text-gray-600 dark:text-gray-400" id="sost-ut1-status-text">Sin iniciar sesión</span>
-                            <span class="font-bold text-emerald-600 dark:text-emerald-400" id="sost-ut1-percent-text">--%</span>
+                            <span class="font-semibold text-gray-600 dark:text-gray-400" id="sost-status-text">Sin iniciar sesión</span>
+                            <span class="font-bold text-emerald-600 dark:text-emerald-400" id="sost-percent-text">--%</span>
                         </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div id="sost-progress-bar" class="bg-emerald-500 h-2 rounded-full transition-all duration-1000" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <a href="smr_sostenibilidad_ut1.html" class="flex items-center justify-center w-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold py-3 rounded-xl hover:scale-[1.02] transition-transform z-10 shadow-sm">
+                        Abrir Sostenibilidad
+                    </a>
+                </div>
+            </div>
+        </main>
                         <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                             <div id="sost-ut1-progress-bar" class="bg-emerald-500 h-2 rounded-full transition-all duration-1000" style="width: 0%"></div>
                         </div>
                     </div>
 
                     <a href="smr_sostenibilidad_ut1.html" class="flex items-center justify-center w-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold py-3 rounded-xl hover:scale-[1.02] transition-transform z-10 shadow-sm">
-                        Abrir Módulo
+                        Abrir Módulo Completo
                     </a>
                 </div>
 
@@ -252,14 +287,11 @@
         // ID de la aplicación para guardar los datos aislados
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'vivi-hub-smr';
         
-        // Cargar configuración de Firebase. 
-        // Si lo subes a tu GitHub, cambia los datos del 'else' por los de tu proyecto de Firebase.
         let firebaseConfig;
         if (typeof __firebase_config !== 'undefined') {
             firebaseConfig = JSON.parse(__firebase_config);
         } else {
             firebaseConfig = {
-                // PARA GITHUB: Crea un proyecto gratuito en Firebase y pega tu config aquí
                 apiKey: "TU_API_KEY_DE_FIREBASE_AQUI",
                 authDomain: "tu-proyecto.firebaseapp.com",
                 projectId: "tu-proyecto",
@@ -275,73 +307,60 @@
             auth = getAuth(app);
             db = getFirestore(app);
         } catch (e) {
-            console.error("Firebase no se inicializó correctamente. Comprueba la configuración si estás en GitHub.", e);
+            console.error("Firebase no se inicializó correctamente.", e);
         }
 
         // Estado del usuario
         onAuthStateChanged(auth, async (user) => {
             if (user) {
-                // Interfaz logueado
                 document.getElementById('auth-btn-group').classList.add('hidden');
                 document.getElementById('user-profile-group').classList.remove('hidden');
                 document.getElementById('user-email-display').innerText = user.email || 'Alumno SMR';
                 closeAuthModal();
                 showToast(`¡Hola de nuevo, ${user.email.split('@')[0]}!`);
                 
-                // Cargar progreso del usuario
-                await loadCloudProgress(user.uid, 'ut1');
-                await loadCloudProgress(user.uid, 'sost_ut1');
+                await loadCloudProgress(user.uid, 'ut1', 'ut1');
+                await loadCloudProgress(user.uid, 'digitalizacion_ut2_ut3', 'dig');
+                await loadCloudProgress(user.uid, 'sost_ut1', 'sost');
             } else {
-                // Interfaz deslogueado
                 document.getElementById('auth-btn-group').classList.remove('hidden');
                 document.getElementById('user-profile-group').classList.add('hidden');
                 
-                // Resetear progreso visual Programación
-                document.getElementById('ut1-progress-bar').style.width = '0%';
-                document.getElementById('ut1-percent-text').innerText = '--%';
-                document.getElementById('ut1-status-text').innerText = 'Inicia sesión para ver tu progreso';
-
-                // Resetear progreso visual Sostenibilidad
-                document.getElementById('sost-ut1-progress-bar').style.width = '0%';
-                document.getElementById('sost-ut1-percent-text').innerText = '--%';
-                document.getElementById('sost-ut1-status-text').innerText = 'Inicia sesión para ver tu progreso';
+                // Resetear progreso visual
+                ['ut1', 'dig', 'sost'].forEach(mod => {
+                    document.getElementById(`${mod}-progress-bar`).style.width = '0%';
+                    document.getElementById(`${mod}-percent-text`).innerText = '--%';
+                    document.getElementById(`${mod}-status-text`).innerText = 'Inicia sesión para ver tu progreso';
+                });
             }
         });
 
-        // Intentar loguear automáticamente si estamos en el entorno de pruebas de la IA
         if (typeof __initial_auth_token !== 'undefined') {
             signInWithCustomToken(auth, __initial_auth_token).catch(e => console.warn("Canvas Token Login failed", e));
         }
 
-        // Cargar progreso de lectura desde Firestore
-        async function loadCloudProgress(userId, moduleId) {
+        async function loadCloudProgress(userId, dbKey, elementId) {
             try {
-                // Selecciona los IDs correctos basados en el módulo solicitado
-                const progressId = moduleId === 'ut1' ? 'ut1' : 'sost-ut1';
+                document.getElementById(`${elementId}-status-text`).innerText = 'Sincronizando...';
                 
-                document.getElementById(`${progressId}-status-text`).innerText = 'Sincronizando...';
-                
-                // CRÍTICO: Regla 1 de Firestore (Rutas estrictas)
-                const docRef = doc(db, 'artifacts', appId, 'users', userId, 'progress', moduleId);
+                const docRef = doc(db, 'artifacts', appId, 'users', userId, 'progress', dbKey);
                 const docSnap = await getDoc(docRef);
                 
                 if (docSnap.exists()) {
                     const data = docSnap.data();
                     const percent = data.maxScrollPercent || 0;
-                    document.getElementById(`${progressId}-progress-bar`).style.width = `${percent}%`;
-                    document.getElementById(`${progressId}-percent-text`).innerText = `${Math.floor(percent)}%`;
-                    document.getElementById(`${progressId}-status-text`).innerText = 'Progreso guardado en la nube';
+                    document.getElementById(`${elementId}-progress-bar`).style.width = `${percent}%`;
+                    document.getElementById(`${elementId}-percent-text`).innerText = `${Math.floor(percent)}%`;
+                    document.getElementById(`${elementId}-status-text`).innerText = 'Progreso guardado en la nube';
                 } else {
-                    document.getElementById(`${progressId}-status-text`).innerText = 'Empieza a leer el módulo';
-                    document.getElementById(`${progressId}-percent-text`).innerText = '0%';
+                    document.getElementById(`${elementId}-status-text`).innerText = 'Empieza a leer el módulo';
+                    document.getElementById(`${elementId}-percent-text`).innerText = '0%';
                 }
             } catch (error) {
-                console.error(`Error leyendo progreso de ${moduleId}:`, error);
-                document.getElementById(moduleId === 'ut1' ? 'ut1-status-text' : 'sost-ut1-status-text').innerText = 'Progreso local (Nube inactiva)';
+                console.error(`Error leyendo progreso de ${dbKey}:`, error);
             }
         }
 
-        // Funciones conectadas al HTML (Registrar, Loguear, Salir)
         window.handleAuthSubmit = async (e) => {
             e.preventDefault();
             const email = document.getElementById('auth-email').value;
@@ -357,7 +376,6 @@
                     await signInWithEmailAndPassword(auth, email, password);
                 } else {
                     const userCred = await createUserWithEmailAndPassword(auth, email, password);
-                    // Crear perfil en la base de datos
                     await setDoc(doc(db, 'artifacts', appId, 'users', userCred.user.uid, 'profile', 'info'), {
                         email: email,
                         createdAt: new Date().toISOString()
@@ -377,12 +395,10 @@
             showToast("Sesión cerrada");
         };
 
-        // Traductor de errores de Firebase amigable
         function obtenerMensajeError(code) {
             if (code === 'auth/invalid-credential' || code === 'auth/user-not-found' || code === 'auth/wrong-password') return "Email o contraseña incorrectos.";
             if (code === 'auth/email-already-in-use') return "Este email ya está registrado.";
             if (code === 'auth/weak-password') return "La contraseña debe tener al menos 6 caracteres.";
-            if (code.includes('api-key')) return "Falta configurar la API Key de Firebase en el código.";
             return "Ocurrió un error. Inténtalo de nuevo.";
         }
     </script>
